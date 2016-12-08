@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    }
 //                }
                 //验证用户名和密码是否正确
-
+//test github
 
                 //跳转到下一个activity
                 Intent intent = new Intent(LoginActivity.this,Main.class);
