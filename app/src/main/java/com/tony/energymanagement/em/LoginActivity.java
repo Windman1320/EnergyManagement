@@ -1,5 +1,6 @@
 package com.tony.energymanagement.em;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,12 +31,16 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"用户名不能为空！",Toast.LENGTH_SHORT).show();
                     if("".equals(ed_passwd.getText())||ed_passwd.getText()==null){
                         Toast.makeText(LoginActivity.this,"密码不能为空！",Toast.LENGTH_SHORT).show();
+                    }else {
+                        Intent intent = new Intent(LoginActivity.this,Main.class);
+                        startActivity(intent);
                     }
                 }
                 //验证用户名和密码是否正确
 
 
                 //跳转到下一个activity
+
             }
         });
     }
