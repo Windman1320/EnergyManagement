@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 if("".equals(ed_username.getText().toString())||ed_username.getText()==null) {
+                    //弹出对话框提示用户
                     new AlertDialog.Builder(LoginActivity.this)
                             .setMessage("请输入用户名！")
                             .setPositiveButton("OK", null)
