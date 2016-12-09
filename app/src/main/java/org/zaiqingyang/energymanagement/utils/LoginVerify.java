@@ -1,5 +1,7 @@
 package org.zaiqingyang.energymanagement.utils;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -74,15 +76,10 @@ public class LoginVerify {
     }
     private static boolean parseJson(String jsonStr){
         try{
-            JSONArray jsonArray = new JSONArray(jsonStr);
-            for (int i = 0; i < jsonArray.length();i++){
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                int status = jsonObject.getInt("status");
-                if(status == 1){
-                    return true;
-                }else {
-                    return false;
-                }
+            JSONObject jsonObject = new JSONObject(jsonStr);
+            int status = jsonObject.getInt("status");
+            if(status==1){
+                return true;
             }
         }catch (Exception e){
             e.printStackTrace();

@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                             .setPositiveButton("OK", null)
                             .show();
                 } else if (login_status) {
+
                     //跳转到下一个activity
                     Intent intent = new Intent(LoginActivity.this, Main.class);
                     startActivity(intent);
