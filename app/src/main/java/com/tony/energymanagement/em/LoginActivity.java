@@ -2,6 +2,7 @@ package com.tony.energymanagement.em;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -32,19 +33,26 @@ public class LoginActivity extends AppCompatActivity {
                Log.i("LoginActivity:","username->"+ed_passwd.getText());
 
 
-//                if("".equals(ed_username.getText())||ed_username.getText()==null) {
-//                    Toast.makeText(LoginActivity.this,"用户名不能为空！",Toast.LENGTH_SHORT).show();
-//                    if("".equals(ed_passwd.getText())||ed_passwd.getText()==null){
-//                        Toast.makeText(LoginActivity.this,"密码不能为空！",Toast.LENGTH_SHORT).show();
-//                    }else {
-//
-//                    }
-//                }
+                if("".equals(ed_username.getText().toString())||ed_username.getText()==null) {
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setMessage("请输入用户名！")
+                            .setPositiveButton("OK", null)
+                            .show();
+
+                }else if("".equals(ed_passwd.getText().toString())||ed_passwd.getText()==null){
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setMessage("密码不能为空！")
+                            .setPositiveButton("OK", null)
+                            .show();
+                }else {
+                    //跳转到下一个activity
+                    Intent intent = new Intent(LoginActivity.this,Main.class);
+                    startActivity(intent);
+                }
                 //验证用户名和密码是否正确
 
-                //跳转到下一个activity
-                Intent intent = new Intent(LoginActivity.this,Main.class);
-                startActivity(intent);
+
+
             }
         });
     }
