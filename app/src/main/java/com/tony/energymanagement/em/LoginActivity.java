@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.tony.energymanagement.energymanagement.R;
 
@@ -21,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private String username = "";
     private String password = "";
-    private Boolean login_status = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("LoginActivity:", "onClick執行了");
-                Log.i("LoginActivity:", "username->" + ed_username.getText());
-                Log.i("LoginActivity:", "username->" + ed_passwd.getText());
                 username = ed_username.getText().toString();
                 password = ed_passwd.getText().toString();
-                new Thread(runnable).start();
 
                 if ("".equals(ed_username.getText().toString()) || ed_username.getText() == null) {
                     //弹出对话框提示用户
@@ -59,12 +55,9 @@ public class LoginActivity extends AppCompatActivity {
                             .setMessage("密码不能为空！")
                             .setPositiveButton("OK", null)
                             .show();
-                } else if (login_status) {
-
-                    //跳转到下一个activity
-                    Intent intent = new Intent(LoginActivity.this, Main.class);
-                    startActivity(intent);
-
+                } else{
+                    //登录验证
+                    new Thread(runnable).start();
                 }
 
             }
@@ -77,7 +70,12 @@ public class LoginActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Bundle data = msg.getData();
-            login_status = data.getBoolean("status");
+            if(data.getBoolean("status")){
+                Intent intent = new Intent(LoginActivity.this, Main.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(LoginActivity.this,"用户名或密码错误！",Toast.LENGTH_SHORT).show();
+            }
         }
     };
     //开启新线程请求网络
@@ -85,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void run() {
             boolean status = LoginVerify.login(username, password);
-            Log.d("In runnable",String.valueOf(status));
             Message msg = Message.obtain();
             Bundle data = new Bundle();
             data.putBoolean("status", status);
