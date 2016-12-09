@@ -8,7 +8,7 @@ import android.widget.Button;
 import com.tony.energymanagement.energymanagement.R;
 
 public class Main extends AppCompatActivity implements View.OnClickListener{
-    private Button btn_shouye;
+    private Button btn_overview;
     private Button btn_energyMonitor;
     private Button btn_energyStat;
     private Button btn_energyAnalysis;
@@ -18,7 +18,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn_shouye = (Button) findViewById(R.id.btn_shouye);
+        btn_overview = (Button) findViewById(R.id.btn_overview);
         btn_energyMonitor = (Button) findViewById(R.id.btn_emonitor);
         btn_energyStat = (Button) findViewById(R.id.btn_estatistic);
         btn_energyAnalysis = (Button) findViewById(R.id.btn_eanalysis);
@@ -31,8 +31,9 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_shouye:
+            case R.id.btn_overview:
                 break;
+
         }
     }
 }
